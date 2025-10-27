@@ -1,7 +1,9 @@
-
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+
+// Use import.meta.dirname for ES modules (Node.js 20.11+)
+const __dirname = import.meta.dirname;
 
 export default defineConfig({
   plugins: [react()],
