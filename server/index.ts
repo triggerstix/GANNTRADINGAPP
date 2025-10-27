@@ -11,11 +11,17 @@ import { setupVite, serveStatic } from "./lib/vite";
 const app = express();
 const server = createServer(app);
 
-// Middleware
-app.use(cors({
-  origin: process.env.ALLOWED_ORIGINS?.split(",") || "*",
+// CORS Middleware
+const corsOptions = {
+  origin: process.env.NODE_ENV === "production"
+    ? process.env.ALLOWED_ORIGINS?.split(",").map((origin) => origin.trim()) || false
+    : "*",
   credentials: true,
-}));
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

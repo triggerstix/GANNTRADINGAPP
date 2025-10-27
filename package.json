@@ -10,12 +10,15 @@
   },
   "scripts": {
     "dev": "tsx watch --env-file=.env server/index.ts",
-    "build": "vite build && tsc --project tsconfig.node.json",
-    "start": "NODE_ENV=production node dist/index.js",
+    "build": "pnpm run clean && vite build",
+    "start": "NODE_ENV=production tsx server/index.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
-    "clean": "rm -rf dist node_modules/.vite"
+    "clean": "rm -rf dist/public",
+    "postinstall": "echo 'Dependencies installed successfully'",
+    "prebuild": "echo 'Starting build process...'",
+    "postbuild": "echo 'Build completed successfully'"
   },
   "dependencies": {
     "@trpc/client": "^11.0.0-rc.553",

@@ -1,13 +1,17 @@
 
 {
   "extends": "./tsconfig.json",
-  "include": ["server/**/*", "vite.config.ts"],
+  "include": ["server/**/*", "shared/**/*"],
+  "exclude": ["node_modules", "dist", "client"],
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "bundler",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "noEmit": false,
+    "allowImportingTsExtensions": false,
     "outDir": "dist",
     "rootDir": ".",
-    "types": ["node"]
+    "types": ["node"],
+    "declaration": false,
+    "sourceMap": false
   }
 }

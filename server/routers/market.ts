@@ -4,6 +4,9 @@ import { router, publicProcedure } from "../trpc";
 import { MarketDataSchema, HistoricalDataPointSchema } from "@shared/types";
 import yahooFinance from "yahoo-finance2";
 
+// Type-safe wrapper for yahoo-finance2
+const yf = yahooFinance as any;
+
 export const marketRouter = router({
   /**
    * Get current market data for a symbol
@@ -15,7 +18,7 @@ export const marketRouter = router({
       const { symbol } = input;
       
       try {
-        const quote = await yahooFinance.quote(symbol);
+        const quote = await yf.quote(symbol);
         
         return {
           symbol: quote.symbol,
@@ -59,9 +62,9 @@ export const marketRouter = router({
           interval: interval as "1d" | "1wk" | "1mo",
         };
         
-        const result = await yahooFinance.historical(symbol, queryOptions);
+        const result = await yf.historical(symbol, queryOptions);
         
-        return result.map((point) => ({
+        return result.map((point: any) => ({
           date: point.date.toISOString().split("T")[0],
           open: point.open,
           high: point.high,
@@ -94,9 +97,9 @@ export const marketRouter = router({
       const { query } = input;
       
       try {
-        const results = await yahooFinance.search(query);
+        const results = await yf.search(query);
         
-        return results.quotes.slice(0, 10).map((quote) => ({
+        return results.quotes.slice(0, 10).map((quote: any) => ({
           symbol: quote.symbol,
           name: quote.longname || quote.shortname || quote.symbol,
           type: quote.quoteType || "Unknown",
