@@ -1,0 +1,53 @@
+
+{
+  "name": "gann-trading-app",
+  "version": "1.0.0",
+  "description": "W.D. Gann Trading Application with React, TypeScript, and tRPC",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "scripts": {
+    "dev": "tsx watch --env-file=.env server/index.ts",
+    "build": "vite build && tsc --project tsconfig.node.json",
+    "start": "NODE_ENV=production node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "clean": "rm -rf dist node_modules/.vite"
+  },
+  "dependencies": {
+    "@trpc/client": "^11.0.0-rc.553",
+    "@trpc/react-query": "^11.0.0-rc.553",
+    "@trpc/server": "^11.0.0-rc.553",
+    "@tanstack/react-query": "^5.60.2",
+    "express": "^4.21.1",
+    "zod": "^3.23.8",
+    "superjson": "^2.2.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "wouter": "^3.3.5",
+    "lucide-react": "^0.462.0",
+    "recharts": "^2.13.3",
+    "date-fns": "^4.1.0",
+    "nanoid": "^5.0.9",
+    "yahoo-finance2": "^2.13.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.8.6",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/cors": "^2.8.17",
+    "@vitejs/plugin-react": "^4.3.3",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "tsx": "^4.19.2",
+    "tailwindcss": "^3.4.15",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49"
+  },
+  "packageManager": "pnpm@8.15.0"
+}
